@@ -1,0 +1,84 @@
+# 📘 Community Literacy Intervention Simulation
+
+import matplotlib.pyplot as plt
+
+# ------------------------------------------
+# Step 1: Define countries with interventions
+# ------------------------------------------
+
+countries = {
+    "USA": {"literacy_2020": 79, "population": 331, "intervention": True},
+    "UK": {"literacy_2020": 82, "population": 67, "intervention": True},
+    "India": {"literacy_2020": 74, "population": 1400, "intervention": True},
+    "Nigeria": {"literacy_2020": 62, "population": 220, "intervention": False},
+    "Brazil": {"literacy_2020": 89, "population": 213, "intervention": True}
+}
+
+# ------------------------------------------
+# Step 2: Literacy trend simulation with intervention
+# ------------------------------------------
+
+def simulate_literacy_change(start_lit, years, base_decline, intervention=False):
+    rates = [start_lit]
+    for year in range(years):
+        if intervention:
+            # Community programs can improve literacy slowly
+            change = 0.25  # Literacy increase per year with support
+        else:
+            change = base_decline
+        new_val = rates[-1] + change
+        new_val = max(0, min(new_val, 100))
+        rates.append(new_val)
+    return rates
+
+# ------------------------------------------
+# Step 3: Generate scenario data
+# ------------------------------------------
+
+def simulate_all_scenarios(countries, years=30, decline_rate=-0.4):
+    all_trends = {}
+    for country, data in countries.items():
+        trend = simulate_literacy_change(
+            data["literacy_2020"], years, base_decline=decline_rate, intervention=data["intervention"]
+        )
+        all_trends[country] = trend
+    return all_trends
+
+# ------------------------------------------
+# Step 4: Plot results
+# ------------------------------------------
+
+def plot_trends_with_community(all_trends, start_year=2020):
+    plt.figure(figsize=(10, 6))
+    for country, trend in all_trends.items():
+        plt.plot(range(start_year, start_year + len(trend)), trend, label=country)
+    plt.title("Impact of Community Literacy Programs by 2050")
+    plt.xlabel("Year")
+    plt.ylabel("Youth Literacy Rate (%)")
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+# ------------------------------------------
+# Step 5: Print summary table
+# ------------------------------------------
+
+def print_intervention_summary(trends):
+    print("📘 Literacy Rate in 2050 with Community Intervention\n")
+    for country, trend in trends.items():
+        final = round(trend[-1], 2)
+        print(f"{country:10} Literacy in 2050: {final}%")
+    print("-" * 40)
+
+# ------------------------------------------
+# Step 6: Run simulation
+# ------------------------------------------
+
+if __name__ == "__main__":
+    years = 30  # 2020 to 2050
+    base_decline = -0.4  # Annual decline without intervention
+
+    trends = simulate_all_scenarios(countries, years, base_decline)
+    print_intervention_summary(trends)
+    plot_trends_with_community(trends)
