@@ -1,0 +1,15 @@
+import matplotlib.pyplot as plt
+
+def plot_country_literacy_trends(countries, years, decline_rate):
+    plt.figure(figsize=(10, 6))
+    for country, data in countries.items():
+        rates = simulate_decline(data["literacy_2020"], decline_rate, years)
+        plt.plot(range(2020, 2020 + years + 1), rates, label=country)
+    plt.title("Youth Literacy Rate Projections (2020–2050)")
+    plt.ylabel("Literacy Rate (%)")
+    plt.xlabel("Year")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+plot_country_literacy_trends(countries, years, literacy_decline_rate)
