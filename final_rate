@@ -1,0 +1,20 @@
+def consequences_for_youth_2050(final_rate):
+    """
+    Returns consequences for key sectors based on declining literacy.
+    """
+    print(f"\n--- Potential Effects on Youth by 2050 (Literacy: {final_rate}%) ---")
+    
+    if final_rate < 70:
+        print("🚫 Education: Major decline in academic performance. Reduced college readiness.")
+        print("💼 Jobs: Limited access to AI, data science, and STEM careers.")
+        print("🧠 Cognitive Skills: Poor critical thinking and digital navigation.")
+        print("📱 Technology: Unable to adapt to new tools or interpret algorithms.")
+        print("🏥 Health: Reduced health literacy; higher risk of misinformation.")
+        print("🗳️ Democracy: Weakened civic engagement and susceptibility to propaganda.")
+    elif final_rate < 85:
+        print("⚠️ Warning: Youth facing moderate challenges in technology and employment.")
+    else:
+        print("✅ Youth on track for a skilled, tech-savvy future.")
+
+# Example: Consequences if youth literacy drops to 64%
+consequences_for_youth_2050(64)
