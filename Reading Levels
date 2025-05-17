@@ -1,0 +1,16 @@
+# Define government-caused decline and potential interventions
+bad_policies = {
+    "Underfunded Schools": -0.4,
+    "Cutting Reading Programs": -0.3,
+    "Privatization Without Oversight": -0.2,
+    "Overemphasis on Testing": -0.2,
+    "Digital Divide Ignored": -0.4,
+}
+
+interventions = {
+    "Universal Reading Programs": 0.5,
+    "Free Public Libraries + Access": 0.4,
+    "Teacher Training & Support": 0.3,
+    "Tech Equity (devices + internet)": 0.4,
+    "Parental Engagement Campaigns": 0.3,
+}
